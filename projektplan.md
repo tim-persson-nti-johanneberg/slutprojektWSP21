@@ -6,3 +6,4 @@
 ## 4. Arkitektur (Beskriv filer och mappar - vad gör/innehåller de?).
 
 
+En hemsida där användare kan publicera en film/bok/låt osv och recensera denna. Andra användare kan också recensera samma sak.
