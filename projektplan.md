@@ -7,3 +7,4 @@
 
 
 En hemsida där användare kan publicera en film/bok/låt osv och recensera denna. Andra användare kan också recensera samma sak.
+![](misc/erv1.png)
