@@ -1,0 +1,12 @@
+h1 Admin sida
+
+h3 LÄGG TILL FILM
+
+form action="edit/newmovie" method="post"
+    input type="text" name="title" placeholder="filmens titel"
+    
+    select name="genre_chosen"
+        - genre.each do |name|
+            option value="#{name[:genre_id]}" "#{name["genre_name"]}"
+
+h3 LÄGG TILL GENRE
