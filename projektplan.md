@@ -7,4 +7,7 @@
 
 
 En hemsida där användare kan publicera en film/bok/låt osv och recensera denna. Andra användare kan också recensera samma sak.
+
+Kunna sortera filmer efter genre och "rating"
+
 ![](misc/erv1.png)
