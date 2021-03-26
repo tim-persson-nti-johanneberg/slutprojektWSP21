@@ -1,1 +1,13 @@
-h2 TIMS EPIC MOVIES AND YOUR REVIEWS 
+link rel="stylesheet" href=" ../style.css"/
+h2 TIMS EPIC MOVIES AND YOUR REVIEWS
+form action="category" method="get"
+    select name="genre_chosen"
+        - genre.each do |name|
+            option value='#{name["genre_id"]}' #{name["genre_name"]}
+
+- entries.each do |review|
+    div class="reviewcard" 
+        - @title = gettitle(review[3])
+        h3 = @title[0][0]
+        p = review[1]
+        p = review[0]
