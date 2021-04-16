@@ -5,6 +5,11 @@ require 'bcrypt'
 require 'byebug'
 
 
+#TODO
+#Gör inlogg och så att man äger sina reviews
+#Kolla så sträng interpoleringen i SQL inte är olaglig
+
+
 def gettitle(id)
     db = SQLite3::Database.new('db/reviews.db')
     db.results_as_hash = true
@@ -12,9 +17,9 @@ def gettitle(id)
     return title
 end
 
-post('category') do
-    category = params[:genre_chosen]
-end
+#post('category') do
+#   category = params[:genre_chosen]
+#end
 
 get ('/') do #TODO Fixa kategorier
     db = SQLite3::Database.new('db/reviews.db')
@@ -59,8 +64,16 @@ post("/newreview") do
 
     movie_id = db.execute("SELECT Movie_id FROM MOVIES WHERE Title = '#{title}'") #Är detta felaktig interpolering?
     #
-    db.execute("INSERT INTO REVIEWS (review_text, movie_id, rating) VALUES(?,?,?)", content, movie_id[0], rating)
+    db.execute("INSERT INTO REVIEWS (review_text, movie_id, rating, genre_id) VALUES(?,?,?,?)", content, movie_id[0], rating, genre_id)
     #Väljer index 0 för att movie_id blir en array pga att titlar inte blir unika
     
     redirect('/edit')
+end
+
+get("/category/?") do
+    db = SQLite3::Database.new('db/reviews.db')
+    db.results_as_hash = true   
+    entries = db.execute("SELECT * FROM REVIEWS WHERE genre_id =#{params['genre_chosen']}")
+    genre = db.execute("SELECT * FROM GENRE")
+    slim(:index, locals:{entries:entries, genre:genre})
 end
