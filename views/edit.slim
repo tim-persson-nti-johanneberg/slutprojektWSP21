@@ -1,13 +1,26 @@
-h2 Här kan du redigera dina reviews eller lägga upp nya 
-form action="newreview" method="post"
-    input type="text" name="Title" placeholder="filmens titel"
-    select name="genre_chosen"
-        - genre.each do |name|
-            option value='#{name["genre_id"]}' #{name["genre_name"]}
-    input type="text" name="CONTENT" placeholder="Ditt tycke"
-    input type="submit" value="Publicera review"
-    input type="radio" name="rating" value="1" id="star"
-    input type="radio" name="rating" value="2" id="star"
-    input type="radio" name="rating" value="3" id="star"
-    input type="radio" name="rating" value="4" id="star"
-    input type="radio" name="rating" value="5" id="star"
+h2 Redigera dina reviews 
+- entries.each do |review|
+    div class="reviewcard" 
+        - @title = gettitle(review[3])
+        h3 = @title[0][0]
+        p = review[1].to_s + "/5"
+        p = review[0] 
+
+            input type="hidden" name="title" value="#{review['review_id']}"
+            input type="text" name="title" placeholder="Uppdatera Titel"
+
+            input type="hidden" name="text" value="#{review['review_id']}"
+            input type="text" name="text" placeholder="Uppdatera text"
+
+            input type="hidden" name="rating" value="#{review['review_id']}"
+            input type="text" name="CONTENT" placeholder="Uppdatera rating"
+            input type="radio" name="rating" value="1" id="star"
+            input type="radio" name="rating" value="2" id="star"
+            input type="radio" name="rating" value="3" id="star"
+            input type="radio" name="rating" value="4" id="star"
+            input type="radio" name="rating" value="5" id="star"
+            input type="submit" value="Uppdatera"
+                    
+        form action="deletereview" method="POST"
+            input type="hidden" name="number" value="#{review['review_id']}"
+            input type="submit" value="Delete" 

@@ -1,5 +1,5 @@
-link rel="stylesheet" href=" ../style.css"/
 h2 TIMS EPIC MOVIES AND YOUR REVIEWS
+h2 Välkommen #{locals [:username]}
 form action="category" method="get"
     select name="genre_chosen"
         - genre.each do |name|
@@ -9,5 +9,5 @@ form action="category" method="get"
     div class="reviewcard" 
         - @title = gettitle(review[3])
         h3 = @title[0][0]
-        p = review[1]
-        p = review[0]
+        p = review[1].to_s + "/5"
+        p = review[0] 

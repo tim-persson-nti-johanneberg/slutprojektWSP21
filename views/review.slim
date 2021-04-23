@@ -1,0 +1,13 @@
+h2 Här kan du redigera dina reviews eller lägga upp nya 
+form action="newreview" method="post"
+    input type="text" name="Title" placeholder="filmens titel"
+    select name="genre_chosen"
+        - genre.each do |name|
+            option value='#{name["genre_id"]}' #{name["genre_name"]}
+    input type="text" name="CONTENT" placeholder="Ditt tycke"
+    input type="submit" value="Publicera review"
+    input type="radio" name="rating" value="1" id="star"
+    input type="radio" name="rating" value="2" id="star"
+    input type="radio" name="rating" value="3" id="star"
+    input type="radio" name="rating" value="4" id="star"
+    input type="radio" name="rating" value="5" id="star"
