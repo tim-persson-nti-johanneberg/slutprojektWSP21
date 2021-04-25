@@ -5,6 +5,8 @@ form action="category" method="get"
         - genre.each do |name|
             option value='#{name["genre_id"]}' #{name["genre_name"]}
     input type="submit" value="Sök"
+form action="kill" method="post"
+    input type="submit" value="Logga ut"
 - entries.each do |review|
     div class="reviewcard" 
         - @title = gettitle(review[3])

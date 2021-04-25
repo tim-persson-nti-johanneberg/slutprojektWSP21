@@ -86,10 +86,15 @@ get('/edit') do
 end
 
 post('/editreview') do
+    db = SQLite3::Database.new('db/reviews.db')
+    id = params[:number]
     text = params[:text]
-    if text != NULL
-        db.execute("INSERT INTO REVIEWS (review_text) WHERE review_id = ?, VALUES(?,?)", text, id)
+    rating = params[:rating]
+    if text != ""
+        db.execute("UPDATE REVIEWS SET review_text = ? WHERE review_id = ?",text,id)
     end
+    db.execute("UPDATE REVIEWS SET rating = ? WHERE review_id = ?",rating,id)
+    redirect('/edit')
 end
 
 post('/deletereview') do
@@ -139,6 +144,11 @@ post("/newreview") do
     #Väljer index 0 för att movie_id blir en array pga att titlar inte blir unika
     
     redirect('/')
+end
+
+post("/kill")do
+    session[:id] = nil
+    redirect("/")
 end
 
 get("/category/?") do

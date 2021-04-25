@@ -4,16 +4,11 @@ h2 Redigera dina reviews
         - @title = gettitle(review[3])
         h3 = @title[0][0]
         p = review[1].to_s + "/5"
-        p = review[0] 
-
-            input type="hidden" name="title" value="#{review['review_id']}"
-            input type="text" name="title" placeholder="Uppdatera Titel"
-
-            input type="hidden" name="text" value="#{review['review_id']}"
+        p = review[0]
+          
+        form action="editreview" method="post"
+            input type="hidden" name="number" value="#{review['review_id']}"
             input type="text" name="text" placeholder="Uppdatera text"
-
-            input type="hidden" name="rating" value="#{review['review_id']}"
-            input type="text" name="CONTENT" placeholder="Uppdatera rating"
             input type="radio" name="rating" value="1" id="star"
             input type="radio" name="rating" value="2" id="star"
             input type="radio" name="rating" value="3" id="star"
